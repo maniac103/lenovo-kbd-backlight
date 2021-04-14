@@ -1,0 +1,13 @@
+[Unit]
+Description=Lenovo keyboard backlight service
+Before=upower.service
+
+[Service]
+Type=notify
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/local/bin/lenovo-kbd-backlight-service /etc/lenovo-kbd-backlight.cfg
+
+[Install]
+WantedBy=upower.service
