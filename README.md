@@ -13,6 +13,7 @@ sudo python3 setup.py install --prefix=/usr/local
 Then
 - copy `lenovo-kbd-backlight.cfg` to `/etc`
 - copy `lenovo-kbd-backlight.service` to a systemd service file directory (typically `/etc/systemd/system`)
+- run `echo uleds | sudo tee /etc/modules-load.d/lenovo-kbd-backlight.conf` (to automatically load the `uleds` kernel module the service needs)
 - run `sudo systemctl daemon-reload` to make systemd aware of the new file
 - run `sudo systemctl enable lenovo-kbd-backlight` to enable the daemon
 
