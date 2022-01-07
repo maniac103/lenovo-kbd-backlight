@@ -7,7 +7,8 @@ class LenovoKeyboardBacklight:
         self.dev = hid.device()
 
     def __enter__(self):
-        self.dev.open(0x048d, 0xc965)
+        dev_desc = next(desc for desc in hid.enumerate(vendor_id=0x048d) if desc['product_id'] in [ 0xc965, 0xc955 ])
+        self.dev.open(dev_desc['vendor_id'], dev_decs['product_id'])
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
