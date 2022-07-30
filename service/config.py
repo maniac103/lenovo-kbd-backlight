@@ -22,7 +22,10 @@ class Config:
         return True
 
     def colors(self):
-        unicolor = bool(self.colorcfg.get('SingleColorOnly', 'yes'))
+        try:
+            unicolor = self.colorcfg['SingleColorOnly'] == 'yes'
+        except:
+            unicolor = False
         return [ int(self.colorcfg.get(f'Color%d' % (1 if unicolor else (i + 1)), '0xffffff'), 0) for i in range(4) ]
 
     def brightness(self):
