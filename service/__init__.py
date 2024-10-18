@@ -56,7 +56,7 @@ def main():
                 elif fileno == acpi_source.fileno():
                     for msg in acpi_source.get():
                         event = msg.get_attr('ACPI_GENL_ATTR_EVENT')
-                        if event is not None and event['bus_id'] == b'D320289E-8FEA-' and event['type'] == 58880:
+                        if event and event['bus_id'] == b'PNP0C14:01' and event['type'] == 58880:
                             profile = backlight.wait_for_profile_change()
                             new_brightness = 0 if profile == 4 else config.last_active_brightness()
                             config.set_brightness(new_brightness)
